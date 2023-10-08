@@ -1,0 +1,2 @@
+def java:
+  return java
