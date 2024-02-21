@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages{
+        stage('vcs'){
+            steps{
+                git url:'git@github.com:apatel-tech/spring-petclinic.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh '/usr/share/maven/bin/mvn package'
+            }
+        }
+        stage('archive results'){
+            steps{
+                junit '**/surefire-reports/*.xml'
+            }
+        }
+    }
+}
